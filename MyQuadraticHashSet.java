@@ -66,7 +66,6 @@ public class MyQuadraticHashSet<E> implements MySet<E> {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     private void resize() {
         Object[] prevTable = table;
         capacity = sizes[sizesIndex += 1];
@@ -74,7 +73,7 @@ public class MyQuadraticHashSet<E> implements MySet<E> {
         table = new Object[capacity];
 
         for(Object obj : prevTable)
-            if(obj != null)
+            if(obj != null && obj != REMOVED)
                 add((E)obj);
     }
 
